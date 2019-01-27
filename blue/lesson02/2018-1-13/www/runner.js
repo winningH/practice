@@ -9,7 +9,7 @@ function runner(_gen){
       if(!res.done){
         var obj=res.value;
 
-        if(obj.next){
+        if(obj.then){
           obj.then((res)=>{
             _next(res);
           }, (err)=>{

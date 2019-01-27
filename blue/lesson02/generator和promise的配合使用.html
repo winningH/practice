@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="www/jquery.js"></script>
+  <script src="runner.js"></script>
+</head>
+<body>
+  <script>
+    // generator 函数不能写成箭头函数
+    runner(function *show() {
+      let data1 = yield $.ajax({url: '', dataType: 'json'})
+      let data2 = yield $.ajax({url: '', dataType: 'json'})
+      let data3 = yield $.ajax({url: '', dataType: 'json'})
+    })
+  </script>
+</body>
+</html>

@@ -14,16 +14,16 @@
       yield [55,90];
       alert('c')
       let a = yield 60
-      alert(a)
+      alert(a)  // 90,80
       return 80
     }
     let gen = show()  // iterator
     let res1 = gen.next()
-    console.log(res1)
+    console.log(res1) // {value: [55, 90], done: false}
     let res2 = gen.next()
-    console.log(res2)
+    console.log(res2) // {value: 60, done: false}
     let res3 = gen.next([90, 80])
-    console.log(res3)
+    console.log(res3) // {value: 80, done: true}
     /*
         yield:
           1. 参数
