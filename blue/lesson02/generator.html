@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>generator</title>
+</head>
+<body>
+  <script>
+    // generator -生产器函数
+    function *show() {
+      alert('a')
+      alert('b')
+      yield [55,90];
+      alert('c')
+      let a = yield 60
+      alert(a)
+      return 80
+    }
+    let gen = show()  // iterator
+    let res1 = gen.next()
+    console.log(res1)
+    let res2 = gen.next()
+    console.log(res2)
+    let res3 = gen.next([90, 80])
+    console.log(res3)
+    /*
+        yield:
+          1. 参数
+          2. return
+     */
+  </script>
+</body>
+</html>
