@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Underscore</title>
+</head>
+<body>
+  <script type="text/javascript" src="Underscore.js"></script>
+  <script>
+    // 增强语言的表现力  语言 + 宿主环境 浏览器
+    // 给内置对象扩展一些不存在功能
+    //console.log(_.uniq)  //
+    console.log(_.uniq())   // _().uniq()  构造函数  实例对象
+
+    var result = _([1,2,5,3,4,1,3,'a','A']).uniq(function (value) {
+      return typeof value === 'string' ? value.toLowerCase() :value
+    })
+
+    console.log(result)
+  </script>
+</body>
+</html>

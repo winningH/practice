@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>Page Title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+  <script>
+    // 解构赋值
+    // 1.左右两边必须一样
+    let [b,c, d]= [12, 20]
+    console.log(b,c,d)
+
+   /*
+      箭头函数
+        1.如果有且仅有1个参数，()可以省略
+        2.如果函数只有一句话，而且是return，{}可以省略
+        * 关于this
+
+      默认参数
+        function show(a,b=12, c){}
+        show(20)
+    */
+
+    // 参数展开
+    function show(a,b, ...args) {
+      console.log(a,b, args)
+    }
+    show(12, 25, 88, 99, 100)
+
+    // 展开参数
+    let arr = [10, 20 ,30]
+    let arr2 = [50, 60, ...arr]
+    console.log(arr2)
+
+    // 3.数组/json
+    /*
+      数组:
+        map     映射
+        filter  过滤 [13,12,11,88,100,99].filter(item => item%2)
+        forEach 遍历
+        reduce
+          let arr = [63,72,51,88,100,99]
+          arr.reduce((temp, item, index) => {})
+        from: 将类数组转换成数组 Array.from()
+      json:
+        1.名字跟值一样，可以简写
+        2.function可以不写
+     */
+
+    //  4.字符串
+    //    字符串模板：植入变量，任意换行
+    //    startsWith()
+    //    endsWith()
+
+    // 5.面向对象
+    class Person{
+      constructor(name, age) {
+        this.name = name
+        this.age = age
+      }
+      showName () {
+        console.log('我叫'+this.name)
+      }
+      showAge() {
+        console.log('我' + this.age+"岁")
+      }
+    }
+    let p = new Person('zhangsan', 18)
+    p.showAge()
+    p.showName()
+
+    class Worker extends Person {
+      constructor(name, age, job) {
+        super(name, age)
+        this.job = job
+      }
+      showJob () {
+        console.log('我是做'+this.job)
+      }
+    }
+    let w = new Worker('blue', 20, '打杂的')
+    w.showJob()
+  </script>
+</body>
+</html>
