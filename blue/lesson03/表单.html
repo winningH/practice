@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <!-- 
+    属性:
+      action  提交到哪儿
+      method  PUT, POST, PUT, DELETE 自定义
+      name    必须，可以重复
+      submit  提交
+
+    数据提交方法
+      GET   数据放在url里面     （利于分享、收藏）
+        1.容量有限
+        2.看得见（表单）
+        3.有缓存
+      POST  数据放在http-body里面
+        1.容量很大
+        2.看不见
+        3.不缓存
+
+      GET、POST安全性完全一样
+   -->
+  <form action="http://localhost/a.php" method="GET" id="form1">
+    用户名：<input type="text" name="user" value=""><br>
+    密码：<input type="password" name="password" value="">
+    <input type="submit" value="提交">
+  </form>
+
+  <script>
+    /* const $ = function (...args) {
+      return document.querySelectorAll(...args);
+    } */
+    const $ = document.querySelectorAll().bind(document)
+
+    window.onload = function () {
+      let oForm = $('#form1')[0]
+      let oUser = document.getElementsByName('user')[0]
+
+      oForm.onsubmit = function () {
+        if (oUser.value == '') {
+          alert('用户名不能为空')
+          return false
+        }
+      };
+    };
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>ajax</title>
+  <script>
+    window.onload = function () {
+      let oBtn = document.getElementById('btn1');
+
+      oBtn.onclick = function () {
+        // 兼容ie6
+        /* if (window.XMLHttpRequest) {
+          var xhr = new XMLHttpRequest(); // ajax、xhr
+        } else {
+          var xhr = new ActiveXObject('Microsoft.XMLHttp');
+        } */
+        let xhr = new XMLHttpRequest();
+
+        // 连接
+        // true:异步
+        // false：同步
+        xhr.open('get', '1.php?a=12&b=5', true);
+
+        // 发送
+        xhr.send();
+
+        // 接收
+        xhr.onreadystatechange = function () {
+         /* 
+            0 初始化-刚刚创建
+            1 已连接
+            2 已发送
+            3 已接收-头
+            4 已接收-body
+          */
+
+          /* 
+              http 状态码：
+              1xx   消息
+              2xx   成功
+              3xx   重定向
+                301 永久重定向-浏览器永远不会再次请求老的地址
+                302 临时重定向-浏览器下次还会请求老地址
+                304 缓存
+              4xx   请求错误（客户端）
+              5xx   服务端错误
+              6xx   扩展
+           */
+
+          if(xhr.readyState === 4) {
+            // 成功-2xx、304
+            if (xhr.status >=200 && xhr.status < 300 || xhr.status === 304) {
+              alert('success', xhr.responseText)
+            } else {
+              console.log('error')
+            }
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body>
+  <input type="button" value="buttom" id="btn1">
+</body>
+</html>
