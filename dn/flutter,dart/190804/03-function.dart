@@ -26,13 +26,13 @@ main(List<String> args) {
   /// 可选命名参数
   /// 使用 {param1, param2...} 形式来指定 命名参数
   // int add4(int x, int y) => x + y;
-  int add4({int x, int y}) {
+  int add4({int x, int y = 6}) {
     // x = x || 1; 
     x ??= 1;  // 如果值为空，就给它赋值， 如果不为空 ，那么就跳过
     y ??= 2;
     return x + y;
   };
-  print('可选命名参数：${add4(x: 3, y:5)}');
+  print('可选命名参数：${add4(x: 3)}');
 
   // 可选位置参数：把 可选值参数 放到[] 中，必填参数，必须要放到可选参数 前面
   int add5(int x, [int y, int z]) {
