@@ -1,3 +1,3 @@
 const express = require('express')
 const app = express()
-const router = require('./router/index.js')
+const router = require('./router')
