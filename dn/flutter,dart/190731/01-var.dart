@@ -13,8 +13,8 @@ main(List<String> args) {
   b = { 'key': 'value'};
   print(b);
 
-  dynamic c = 'string';
-  c = 123;
+  // dynamic c = 'string';
+  // c = 123;
 
   // var d = 123;
   // d = 'stirng';  //不允许

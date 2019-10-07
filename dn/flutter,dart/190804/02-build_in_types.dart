@@ -1,6 +1,6 @@
 main(List<String> args) {
   int i = 100;
-  double d = 1.0;
+  // double d = 1.0;
 
   // bitLength 判断 int 值 需要多少 bit
   int bitLength = i.bitLength;
