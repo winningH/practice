@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包</title>
+</head>
+<body>
+  <script>
+    // 自执行函数
+    // (function(root) { // 自身局部作用域 => 全局作用域
+    //   var jQuery = function () {
+
+    //   }
+    //   root.$ = root.jQuery = jQuery;
+    // })(window)
+
+
+    /* (function (root, factory) {
+      root.Vue =factory();
+    })(window, function () { // 工厂函数
+      var Vue = function () {
+
+      }
+      return Vue;
+    })
+
+    console.log(Vue) */
+
+    /* function fn(fun) {
+      fun()
+    }
+
+    function fn1() {
+      console.log(2019)
+    }
+
+    fn(fn1) // 2019 */
+
+    // 闭包 一个函数在创建时允许访问自身作用域之外的作用域中的变量
+    // 调用完函数之后 临时开辟的内存空间就要销毁
+    // 调用完函数之后 自身作用域就会被销毁
+    var result = 'result'
+    function fn() {           // 声明全局作用域中
+      // console.log(result)     // 局部作用域
+      var res = 'hello'
+      // function fn1() {
+      //   console.log(res)
+      // }
+      // fn1()
+      return function (num) {
+        console.log(num)
+      }
+    }
+    fn()(20)
+
+    // 两个作用域之间有依赖关系，下层作用域能访问上层作用域中的变量【作用域链】,
+    // 闭包是在作用域链之上一个升级，还让上一级作用域不能被销毁【缓存 result 】
+
+    // static
+    var conf = (function () {
+      // 私有成员
+      var con = {
+        max: 1000,
+        min: 100
+      }
+
+      function util() {
+
+      }
+
+      function others() {
+
+      }
+
+      return {
+        // 公开的方法
+        get: function (name) {
+          return con[name] ? con[name] : null
+        },
+        util,
+        others
+      }
+    })()
+
+    console.log(conf)
+    console.log(conf.get('max'))
+    console.log(conf.get('min'))
+  </script>
+</body>
+</html>
