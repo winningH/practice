@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>闭包练习题</title>
+</head>
+<body>
+  <script>
+    var foo=function(m,n){
+    console.log(n);
+    return {
+        foo:function(o){
+          console.log(o);
+          return foo(o,m);
+        }
+      }
+    }
+
+    //问题一:
+    // var result=foo(1);
+    // result.foo(2);
+    // result.foo(3);
+    // result.foo(4);
+
+    //问题二:
+    // var result=foo(2).foo(3).foo(4).foo(5);
+
+    //问题三:
+    var result=foo(1);
+    result.foo(2).foo(3);
+    result.foo(4).foo(5);
+  </script>
+</body>
+</html>
