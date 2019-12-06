@@ -5,8 +5,18 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>this</title>
+  <style>
+    #box {
+      width: 100px;
+      height: 100px;
+      margin: 50px auto;
+      background-color: red;
+    }
+  </style>
 </head>
   <body>
+    <div id="box"></div>
+    <input type="text" id="input">
     <script>
       /*
         全局环境的this
@@ -17,6 +27,78 @@
        */
 
       //  this本质上就是一个对象
+
+      // 全局环境下的this 就是window对象
+      // console.log(this)
+
+      // 不存在独立的函数 所有函数必须是某个对象的方法
+      // function fn() {
+      //   console.log(this) // window
+      // }
+      // fn() // window.fn()
+
+      // 作为对象的方法调用，方法里面的this所指向就是当前这个对象
+      /* var name = '张三'
+      var people = {
+        name: '李四',
+        fn: function () {
+          var _this = this
+          console.log(this.name) // this => people
+          function foo() {
+            console.log(_this.name)
+            console.log(this.name)
+          }
+          // foo() // window.foo
+          // foo.call(this)
+        }
+      }
+      people.fn()
+      console.log(this) */
+
+      // 事件函数中的this 触发当前事件的Element对象
+      /* var box = document.getElementById("box")
+      box.onclick = function () {
+        console.log(this.offsetWidth) // Element 对象
+      } */
+
+      // apply call bind中的this 函数对象中的方法 改变当前函数对象里面 this原本的指向
+      // Function.prototype.apply
+      // Function.prototype.call
+      // Function.prototype.bind
+
+      // fn.call(this)
+      // 1、调用当前函数对象
+      // 2、改变原本函数对象里面的this指向
+      /* var input = document.getElementById("input")
+      function fun(a,b) {
+        console.log(a, b)
+        console.log(this.value)
+      }
+      // fun()
+      input.oninput = function() {
+        fun.call(this, [10, 20]) // 改变fun原来的window => Element
+        console.log(this)
+      } */
+
+      // bind() 函数对象的方法
+      // 1：bind作为函数对象的方法
+      // 2: 作为函数对象调用bind的方法不会立即调用当前函数对象, 会返回一个新的函数
+      //      此时新函数与函数对象是一样的。此时函数对象中this绑定中的第一个函数
+
+      var age = 20
+      var setAge = function(a,b,c) {
+        console.log(a, b, c)
+        console.log(this.age)
+      }
+      // var result = setAge.bind()
+      // console.log(result)
+
+      var obj = {
+        age: 30,
+        fn: setAge
+      }
+      var f = obj.fn.bind(this, 'a', 'b')
+      f('c', 'd')
     </script>
   </body>
 </html>
