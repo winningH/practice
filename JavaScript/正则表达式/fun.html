@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>正则对象方法</title>
+</head>
+<body>
+  <script>
+    /*
+        search
+        replace
+        match
+        split
+     */
+
+    // search() 找到返回下标，否则-1
+    //  var str = "javascript"
+    //  console.log(str.search(/script/i))
+
+    //  replace() 替换
+    /* var str = "小明说你他妈的再看我一眼，我就打死你"
+    console.log(str.replace(/他妈的|死|打/g, '**'))
+
+    var str1 = "[0]如果你爱我，[1]如果我也爱你，那我们就在一起吧；"
+    var arr = ["恰好", "恰好"]
+    // 模板替换[]
+    var str2 = str1.replace(/\[(\d+)\]/g, function (a, b) {
+      return arr[b]
+      console.log(arguments)
+      console.log(a, b) // b 返回(\d+)的内容，如果没小括号，返回下标
+    })
+    console.log(str2) */
+
+    // match() 返回与正则匹配的字符数组
+    // var str = "0如果你爱我，1如果我也爱你，那我们就在一起吧"
+    // console.log(str.match(/\d/g))
+
+    // split() 切割 第二个参数限定返回的长度
+    // var str = "javascript111jquery222java333php"
+    // console.log(str.split(/\d+/g, 2))
+
+    // exec()
+    // 匹配成功 匹配的子字符串存储在一个数组中
+    // 匹配不成功返回null
+
+    // 模板 {{}} 模板标识符
+    var template = "{{abc}}, {{100}}, {{Abc}}"
+    var exp = /\{\{(\w+)}\}/g
+    var result = exp.exec(template)
+    console.log(result)
+
+    // var result;
+    // while((result=exp.exec(template))!==null) {
+    //   console.log(result)
+    // }
+
+  </script>
+</body>
+</html>

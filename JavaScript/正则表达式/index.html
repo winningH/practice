@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>正则表达式</title>
+</head>
+<body>
+  <script type="text/javascript">
+    /*
+      RegExp
+      /xxx/           字面量
+      new RegExp()    构造函数
+
+      1: []     一个字符的范围
+      2: ^$     匹配全部，^以什么开头，$以什么结尾
+      3: 默认区分大小写
+      4: i修饰符  让正则模式不区分大小写
+      5: \d       == [0-9]
+      6: {number} 设置匹配字符数量 {3, 10} 3到10
+      7: \w       等价 [0-9 a-z A-Z] | [0-9 a-z]/i
+      8: +        代表1-n位
+      9: .        在正则中代表任意字符 \.需要转义
+      10: ?       1个或没有
+      11: *       代表0-n之间到字符
+      12 ｜       逻辑或
+      13: g修饰符   匹配全局
+     */
+
+    //  座机号码 区号 + 座机号
+    // 0开始 3到4个数字
+    // -
+    // 7到8位之间到数字
+    // var phone = /^0\d{2,3}-\d{7,8}$/;
+    // console.log(phone.test('020-12345678'))
+
+    // 数字
+    // 需求   正数 负数 小数点  0 -1  1.2
+    // 负数   前面-  出现一次
+    // 小数  .      出现一次
+    // 如果第一个字符是0，0只能出现一次，后面必须跟随. 不能有任何数字
+    var str = '0.000'
+    var exp = /^-?(0(\.\d*[1-9])?|[1-9]\d*(\.\d+)?)$/
+    console.log(exp.test(str))
+  </script>
+</body>
+</html>

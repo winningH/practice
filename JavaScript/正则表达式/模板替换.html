@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>模板替换</title>
+</head>
+<body>
+  <div id="app"></div>
+  <!-- html模板 -->
+  <script type="text/html" id="template">
+    <h3>标题：{{title}}</h3>
+    <p>内容：{{content}}</p>
+    <hr>
+    <p>姓名：{{user.name}}</p>
+    <p>年龄：{{user.age.now}}</p>
+  </script>
+  <script type="text/javascript">
+    var mtp = function(template, data) {
+      var el = document.getElementById(template).innerHTML
+      console.log(el)
+      var exp = /\{\{(\w+(\.?\w)*)\}\}/g
+      // var result = exp.exec(el)
+      // console.log(result)
+      while ((result = exp.exec(el)) !== null) {
+        if (result[1]) {
+          if (result[1].includes('.')) {
+            var res = result[1].split('.')
+            var str = ''
+            for (var i = 0; i < res.length; i++) {
+              str += "['" + res[i] + "']"
+            }
+            el = el.replace(result[0], eval(`data${str}`))
+          } else {
+            el = el.replace(result[0], data[result[1]])
+          }
+
+        }
+      }
+      console.log(el)
+      return el
+    }
+    var data = {
+      title: '模板',
+      content: '模板内容',
+      user: {
+        name: 'huang',
+        age: {
+          now: 20
+        }
+      }
+    }
+    // mtp("template", data)
+
+
+
+    document.getElementById('app').innerHTML = mtp("template", data)
+  </script>
+</body>
+</html>
