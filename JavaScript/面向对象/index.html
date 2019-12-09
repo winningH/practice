@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>面向对象</title>
+</head>
+<body>
+  <script>
+    // 面向对象语言中不存在独立的函数 所有的函数必须是某个对象的方法
+
+    /*
+        基于原型构建的
+        继承
+          this.xxx    实例上就是给实例对象进行扩展
+          prototype   访问权限
+
+          prototype   函数对象的属性
+     */
+
+    //  构造函数
+    function Person() {
+      this.name = 'ning'
+      this.age = 20
+    }
+
+    // 原型对象
+    Person.prototype = {
+      name: 'huang',
+      address: '广东',
+      work: function() {
+        console.log('work')
+      }
+    }
+
+    Person.prototype.play = function() {
+      console.log('play')
+    }
+
+    var user = new Person();  // 实例对象
+    console.log(user.name)
+    user.play()
+    user.work()
+  </script>
+</body>
+</html>
