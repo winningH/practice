@@ -38,10 +38,24 @@
       console.log('play')
     }
 
+    Person.prototype.constructor = Person
+
     var user = new Person();  // 实例对象
     console.log(user.name)
     user.play()
     user.work()
+
+    // constructor 所有对象都有的属性
+    console.log(user.constructor)
+    console.log(Person.constructor)
+
+    // 内置对象 不需要new
+    // Math
+    // 全局对象
+
+    // 宿主对象D
+    // DOM　文档对象模型  核心对象document
+    // BOM  浏览器对象模型  核心对象window
   </script>
 </body>
 </html>
