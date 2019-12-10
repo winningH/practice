@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>原型链</title>
+</head>
+<body>
+  <script>
+    /*
+      prototype 函数对象的属性
+      __proto__ 每一个对象拥有的属性 指向的是当前对象自身构造函数关联的原型对象
+    */
+
+    var obj = {}
+    console.log(obj.__proto__)
+
+    function fn() {
+
+    }
+    // console.log(fn.prototype)
+    // console.log(fn.__proto__)
+
+    console.log(Object.__proto__) // function
+    console.log(Object.prototype) // object
+
+    console.log(Object.__proto__ === fn.__proto__)
+    console.log(Object.__proto__ === Function.prototype)
+
+
+    Object.prototype.a = function () {
+      console.log(1)
+    }
+    Function.prototype.b = function () {
+      console.log(2)
+    }
+    function foo() {
+
+    }
+
+    foo.a()
+    foo.b()
+
+    var f = new fn() // f作为fn的实例对象
+    f.a()
+    f.b()
+  </script>
+</body>
+</html>

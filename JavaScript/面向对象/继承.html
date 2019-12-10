@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>继承</title>
+</head>
+<body>
+  <script>
+    function Person(name, age) {
+      this.name = name
+      this.age = age
+    }
+    Person.prototype = {
+      eat: function() {
+        console.log(this.name + '会吃饭')
+      },
+      sing: function() {
+        console.log(this.name + '会唱歌')
+      }
+    }
+    var people = new Person('huang', 20);
+    people.sing()
+
+
+
+    function Student(name, age) {
+      Person.call(this, name, age)      // 继承Person的属性
+    }
+
+    /* 共享原型对象
+      Student.prototype = Person.prototype
+      Student.prototype.learn = function() {
+        console.log(this.name + '学习')
+      }
+      people.learn() // 弊端: people也会有learn
+    */
+
+    /*
+      for (var key in Person.prototype) { // 遍历 数组 对象 "可枚举属性"
+        Student.prototype[key] = Person.prototype[key]
+      }
+      Student.prototype.learn = function() {
+        console.log(this.name + '学习')
+      }
+    */
+
+    /*
+      Student.prototype = new Person()
+      Student.prototype.learn = function() {
+        console.log(this.name + '学习')
+      }
+    */
+    Object.prototype.work = function() {
+      console.log('work')
+    }
+    function fn() {
+
+    }
+    fn.work()
+    var str = 'str'
+    str.work()
+    console.log(Object.prototype.__proto__)
+
+    var st = new Student('zhang', 15)   // 继承Person的方法
+    console.log(st.age)
+    console.log(Student.prototype)
+    console.log(Student.prototype.__proto__)
+    // st.eat()
+    // st.learn()
+    st.work()
+
+  </script>
+</body>
+</html>
