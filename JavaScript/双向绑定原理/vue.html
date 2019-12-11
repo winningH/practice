@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="app">
+    <p v-model="message"></p>
+    <input v-model="message" />
+  </div>
+
+  <!-- <script src="vue.js"></script> -->
+  <script>
+    // Object.defineProperty()
+    // var vm = new Vue({
+    //   el: '#app',
+    //   data: {
+    //     message: ''
+    //   }
+    // })
+
+    var data = {
+      message: ''
+    }
+
+    var app = document.getElementById('app')
+    var Element = app.querySelectorAll("[v-model=message]")
+    for (var i = 0; i < Element.length; i++) {
+      Element[i].oninput = function () {
+        data[this.getAttribute("v-model")] = this.value
+      }
+    }
+
+    Object.defineProperty(data, "message", {
+      get: function () {
+        return this.str
+      },
+      set: function (val) {
+        var Element = app.querySelectorAll("[v-model=message]")
+        for (var i = 0; i < Element.length; i++) {
+          Element[i].value = val
+          Element[i].innerText = val
+        }
+        this.str = val
+        console.log(val)
+      }
+    })
+  </script>
+</body>
+</html>

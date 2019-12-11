@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    var obj = {
+      name: 'zhangsan',
+      age: 20
+    }
+    // console.log(obj.name)     // get 钩子函数
+    obj.name = 'lisi'         // set 钩子函数
+
+    // __proto__ 不可枚举属性 隐藏属性
+    // console.log(Object.prototype)
+
+    /* obj.__defineGetter__('name', function () {
+      return this.str
+    })
+    obj.__defineSetter__('name', function (val) {
+      this.str = val
+    })
+    obj.name = 'wang'
+    console.log(obj.name) */
+
+    // 对象 数据劫持  默认不激活
+    // 钩子函数
+  </script>
+</body>
+</html>
