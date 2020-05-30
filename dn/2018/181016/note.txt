@@ -1,2 +1,0 @@
-call,apply,bind,new
-共同点：基于函数、原型构建、改变this的指向
