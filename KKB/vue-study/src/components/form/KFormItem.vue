@@ -8,8 +8,12 @@
 
 <script>
 import Schema from "async-validator";
+import emitter from "@/mixins/emitter"
 
 export default {
+  name: 'KFormItem',
+  componentName: 'KFormItem',
+  mixins: [emitter],
   inject: ["form"],
   props: {
     label: {
@@ -26,11 +30,22 @@ export default {
       error: ""
     };
   },
+
   mounted() {
+    // 派发事件通知KForm， 新增kFormItem实例
+    if (this.prop) {
+      this.dispatch('KForm', 'kForm.addField', [this])
+    }
+    
     this.$on("validate", () => {
       this.validate();
     });
   },
+
+  beforeDestroy() {
+    this.dispatch('KForm', 'kForm.removeField', [this])
+  },
+
   methods: {
     validate() {
       // 执行校验

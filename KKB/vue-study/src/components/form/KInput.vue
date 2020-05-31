@@ -6,7 +6,11 @@
 </template>
 
 <script>
+  import emitter from '@/mixins/emitter'
+
   export default {
+    inheritAttrs: false,
+    mixins: [emitter],
     props: {
       value: {
         type: String,
@@ -22,8 +26,8 @@
         this.$emit('input', e.target.value)
 
         // 数据变化，需要执行校验
-        this.$parent.$emit('validate')
-        // this.$dispatch('KFormItem', 'validate')
+        // this.$parent.$emit('validate')
+        this.dispatch('KFormItem', 'validate')
       }
     },
   }
