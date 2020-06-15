@@ -25,3 +25,56 @@ let x: [string, number];
 x = ["hello", 10]; // ok
 // x = [10, 'hello']; // error
 console.log(x[0].substring(2));
+
+// 函数中的类型约束
+function greet(person:string): string {
+  return 'hello' + person
+}
+
+// void类型
+function warn(): void {
+  // 无需retrun
+}
+
+// 类型别名，类似于接口
+type FooBar = {
+  foo: string,
+  bar: string
+}
+
+const aliasType: FooBar = {
+  foo: 'foo',
+  bar: 'bar'
+}
+
+// 联合类型
+let union: string | number;
+union = '1'
+union = 1
+
+// 交叉类型：扩展类型
+type First = {first: number}
+type Second = {second: number}
+type FirstAndSecond = First & Second
+
+// 函数
+// 必填参数
+function greeting(person:string, msg?: string): string {
+  return 'welcom:' + person + (msg ? msg : '')
+}
+// greeting() no ok
+let per = greeting('huang')
+console.log(per);
+
+// 重载：形参或返回值的数量或类型区别多个同名函数
+// 先声明再实现
+function watch(cb1: () => void): void
+function watch(cb1: () => void, cb2: () => void): void
+// 实现
+function watch(cb1: () => void, cb2?: () => void) {
+  if (cb1 && cb2) {
+    console.log('重载2');
+  } else {
+    console.log('重载1');
+  }
+}
