@@ -8,17 +8,17 @@ main(List<String> args) {
   /// 当一个返回Future的函数被调用的时候
   /// 1.函数把自己放到队列中 （用于事件循环）
   /// 2.返回一个未完成的Future对象
-  /// 
+  ///
   /// 要获取Future中的值，也有两种方法
   /// 1. async 和 await
   /// 2. 使用Future的接口
-  
 
   getName();
   getName2();
   getName3();
   getName4();
 }
+
 getName() async {
   // 假设这个地方 比较耗时
   // 它可能会造成 main函数阻塞
