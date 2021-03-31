@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		for(var i=0;i<5;i++){
+			setTimeout(function(){
+				console.log('one:',new Date(),i)
+			},1000)
+		}
+
+		for(var i=0;i<5;i++){
+			(function(i){
+				setTimeout(function(){
+					console.log('two:',i)
+				},1000*i)
+			})(i)
+		}
+
+		for(var i=0;i<5;i++){
+			setTimeout((function(){
+				console.log('three:',i)
+			})(i),1000*i)
+		}
+
+		for(var i=0;i<5;i++){
+			setTimeout(function(){
+				console.log(i)
+			},1000*i)
+		}
+	</script>
+</body>
+</html>

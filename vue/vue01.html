@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  <div id='app'>
+    <ul>
+      <li v-for="(user,index) in users">{{user.name}}</li>
+    </ul>
+  </div>
+  <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+  <script type="text/javascript">
+    // MVVM
+    var app = document.getElementById('app')
+    console.log(app)
+    var model = {
+      users: [
+        { name: '马云', age: 54 },
+        { name: '马化腾', age: 48 },
+        { name: '马克思', age: 200 }
+      ]
+    }
+
+    var vue = new Vue({
+      el: '#app',
+      data: model
+    })
+
+    // 虚拟DOM, 存在，但是不显示在页面中
+    var app1 = document.getElementById('app')
+    console.log(app1)
+    console.log(app === app1)
+
+    window.setTimeout(function () {
+      model.users.push({name: 'zhangsan', age:30 })
+    }, 3000)
+
+    // 前端的性能瓶颈
+    // 1.尽量减少没必要的服务器请求 （本地缓存策略 responseCode: 200  responseCode: 304）
+    // sprite图   20 张图  1张图   background-position
+    // 2.尽量地减少资源内容的大小
+    // 3.图片的缓存 base64(处理)
+    // 4.尽量减少DOM的渲染 *创建
+    //    a.尽量的减少创建新的dom
+    //    b.如果必须要创建很多dom，记得用document fragement （文档碎片）
+
+    // vue的缓存策略
+  </script>
+</body>
+</html>

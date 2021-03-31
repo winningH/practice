@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="myApp1">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>脏检查深入分析</title>
+  <script src="http://cdn.static.runoob.com/libs/angular.js/1.4.6/angular.min.js"></script>
+  <script>
+    /* $watch = {
+      name: '', // 当前的watch对象 监听的数据名
+      getNewValue: function ($scope) { // 得到新值
+
+      },
+      listener: function (newValule, oldValue) { // 当数据发生改变时，需要执行的操作
+
+      }
+    } */
+    // 脏检查是通过事件 AJAX 定时器
+    // var myApp1 = angular.module('myApp1', [])
+    // myApp1.controller('applController', ['$scope', function ($scope) {
+    //   $scope.a = 0;
+    // }])
+
+    var app = angular.module('myApp1', [])
+    app.directive('myclick', function () {
+      return function ($scope, ele) {
+        ele.on('click', function () {
+          $scope.a++
+          // $scope.$apply(); // 可以添加回调函数
+          $scope.$digest() // 添加digest(),数据显示在界面
+        })
+      }
+    })
+
+    app.controller('appController', ['$scope', function ($scope) {
+      $scope.a = 0;
+    }])
+  </script>
+</head>
+<body>
+  <div ng-controller='appController'>
+    <span>{{a}}</span>
+    <button myclick>click</button>
+  </div>
+
+  <!-- <div ng-controller='applController'>
+    <span ng-bind='a'></span>
+    <button ng-click='a=a+1'>add</button>
+  </div> -->
+  <!-- <span>{{user}}</span>
+  <span>{{passWord}}</span> -->
+</body>
+</html>
