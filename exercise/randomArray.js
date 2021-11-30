@@ -7,8 +7,11 @@ for (let i = 1; i <= 20; i++) {
 }
 
 let b = []
+let temp = [...arr80]
 for (let i = 0; i < 15; i++) {
-  let randomNumber = Math.ceil(Math.random() * 20)
+  let randomIndex = Math.floor(Math.random() * temp.length)
+  let randomNumber = temp.splice(randomIndex, 1)
+  // let randomNumber = Math.ceil(Math.random() * 20)
   b.push(randomNumber)
 }
 
