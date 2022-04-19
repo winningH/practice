@@ -37,3 +37,16 @@ let isEdge = UA && UA.indexOf('edge/') > 0
 let isAndroid = (UA && UA.indexOf('android') > 0) || weexPlatform === 'android'
 let isIOS = (UA && /iphone|ipad|ipod|ios/.test(UA)) || weexPlatform === 'ios'
 let isChrome = UA && /chrome\/\d+/.test(UA) && !isEdge
+
+// 柯里化函数
+function curry(fn) {
+  return function curried(...args) {
+    if (args.length >= fn.length) {
+      return fn.apply(this, args)
+    } else {
+      return function (...args2) {
+        return curried.apply(this, [...args, ...args2])
+      }
+    }
+  }
+}
