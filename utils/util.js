@@ -50,3 +50,18 @@ function curry(fn) {
     }
   }
 }
+
+function unCurry(fn) {
+  return function (tar, ...arg) {
+    return fn.apply(tar, arg)
+  }
+}
+
+function _new(fn, ...args) {
+  let obj = {}
+  obj.__proto__ = fn.prototype
+
+  let result = fn.apply(obj, args)
+
+  return result instanceof Object ? result : obj
+}
