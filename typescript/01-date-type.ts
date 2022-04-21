@@ -60,11 +60,19 @@ type FirstAndSecond = First & Second
 // 函数
 // 必填参数
 function greeting(person:string, msg?: string): string {
-  return 'welcom:' + person + (msg ? msg : '')
+  return 'welcome:' + person + (msg ? msg : '')
 }
 // greeting() no ok
 let per = greeting('huang')
 console.log(per);
+
+// 默认参数可以不放在函数入参的最后面，但是可选参数必须放在最后面
+// 如果带默认值的参数不是最后一个参数，用户必须明确的传入 undefined值来获得默认值
+function add(x:number = 100, y:number):number {
+  return x+y
+}
+
+add(undefined, 100)
 
 // 重载：形参或返回值的数量或类型区别多个同名函数
 // 先声明再实现
@@ -78,3 +86,11 @@ function watch(cb1: () => void, cb2?: () => void) {
     console.log('重载1');
   }
 }
+
+// never 类型表示的是那些永不存在的值的类型
+function fn(msg:string): never {
+  throw new Error(msg)
+}
+
+
+export {}

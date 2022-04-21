@@ -65,3 +65,18 @@ function _new(fn, ...args) {
 
   return result instanceof Object ? result : obj
 }
+
+function debounce(fn, delay) {
+  let time = null
+  return function () {
+    console.log(argustments)
+    time && clearTimeout(time)
+    setTimeout(() => {
+      fn.apply(this, argustments)
+    }, delay)
+  }
+}
+
+function throttle(fn, delay) {
+  let nowTime = 0
+}
