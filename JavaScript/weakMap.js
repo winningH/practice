@@ -1,38 +1,30 @@
 // weakMap 及时释放我们的内存 JS的垃圾回收机制
+/**
+ * 弱映射中的键只能是Object或继承自Object的类型，使用非对象设置键会抛出TypeError。值的类型没有限制
+ */
+
+const key1 = { id: 1 },
+  key2 = { id: {} },
+  key3 = { id: 3 }
+// 使用嵌套数组初始化若映射
+const wm1 = new WeakMap([
+  [key1, 'val1'],
+  [key2, 'val2'],
+  [key3, 'val3']
+])
+console.log(wm1.get(key1)) // val1
+console.log(wm1.set(key2.id, '222')) //WeakMap { <items unknown> }
+console.log(wm1.get(key2.id)) // 222
+
 let obj = {
   name: 'zhangsan'
 }
 let wm = new WeakMap()
 wm.set(obj, 1024)
-console.log(wm)
+console.log(wm) // WeakMap { <items unknown> }
 console.log(wm.has(obj))
+console.log(wm.get(obj))
 
-let btn = document.querySelector('#btn')
-wm.set(btn, {
-  count: 0
-})
-btn.addEventListener('click', () => {
-  let v = wm.get(btn)
-  v.count++
-  console.log(wm.get(btn).count)
-})
-
-var Person = function () {
-  var privateDate = new WeakMap()
-
-  function Person(name) {
-    console.log(name)
-    privateDate.set(this, {
-      name: name
-    })
-  }
-  Person.prototype.getName = function () {
-    return privateDate.get(this).name
-  }
-  return Person
-}
-Person('huang')
-
-var array = [1, 2, 3, 4, 5, 6, 7, 8, 9]
-var newArray = array.slice(1, 3)
-console.log(array, newArray)
+// 使用弱映射
+// 1.私有变量
+// 2.DOM节点元数据
