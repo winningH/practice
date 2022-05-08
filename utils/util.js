@@ -71,12 +71,42 @@ function debounce(fn, delay) {
   return function () {
     console.log(argustments)
     time && clearTimeout(time)
-    setTimeout(() => {
+    time = setTimeout(() => {
       fn.apply(this, argustments)
     }, delay)
   }
 }
 
+// 节流函数
 function throttle(fn, delay) {
-  let nowTime = 0
+  let oldTime = Date.now()
+  let time = null
+
+  return function () {
+    let curTime = Date.now()
+    if (curTime - oldTime >= delay) {
+      time && clearTimeout(time)
+      time = setTimeout(() => {
+        fn.apply(this, argustments)
+        oldTime = Date.now()
+      }, delay)
+    }
+  }
 }
+
+function throttle1(fn, delay) {
+  let timer = null
+  return function () {
+    if (!timer) {
+      timer = setTimeout(() => {
+        fn.apply(this, arguments)
+        timer = full
+      }, delay)
+    }
+  }
+}
+
+// 正则切分千分位 （10000 => 10,000）
+// ?=n 量词匹配任何其后紧接指定字符串 n 的字符串。
+let num = '123456789.12345'
+num.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
