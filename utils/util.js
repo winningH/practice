@@ -110,3 +110,40 @@ function throttle1(fn, delay) {
 // ?=n 量词匹配任何其后紧接指定字符串 n 的字符串。
 let num = '123456789.12345'
 num.replace(/(\d)(?=(\d{3})+\.)/g, '$1,')
+
+Function.prototype.myCall = function (ctx) {
+  let ctx = ctx || window
+  // 设置fn为调用myCall的方法
+  ctx.fn = this
+  // 获取剩余参数
+  let [_this, ...args] = arguments
+  let result = ctx.fn(...args)
+  delete ctx.fn
+  return result
+}
+
+Function.prototype.myApply = function () {
+  let ctx = arguments[0] || window
+  ctx.fn = this
+  if (!arguments[1]) {
+    let result = ctx.fn()
+    delete ctx.fn
+    return result
+  }
+  let result = ctx.fn(...arguments[1])
+  delete ctx.fn
+  return result
+}
+
+Function.prototype.myBind = function (ctx) {
+  ctx = ctx || window
+  let self = this
+  let args = [...arguments].splice(1)
+  let fn = function () {}
+  let _fn = function () {
+    return self.apply(this instanceof _fn ? this : ctx, args)
+  }
+  fn.prototype = this.prototype
+  _fn.prototype = new fn()
+  return _fn
+}
