@@ -13,7 +13,7 @@ new Promise((resolve, reject) => {
       resolve()
     })
       .then(() => {
-        console.log(5)
+        console.log(4)
       })
       .then(() => {
         console.log(5)
